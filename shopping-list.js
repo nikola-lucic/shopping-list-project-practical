@@ -18,6 +18,7 @@
 
     function shoppingBag() {
         this.shoppingList = [];
+        this.infoList = [];
         this.addProduct = function(product) {
             var currentDate = new Date();
             var expirationDate = product.expirationDate;
@@ -28,6 +29,10 @@
 
             this.shoppingList.push(product)
             return this.shoppingList;
+        }
+        this.info = function(product) {
+            this.infoList.push(product.getInfo())
+            return this.infoList;
         }
 
 
@@ -75,7 +80,7 @@
         var totalPriceOfProducts = myBag.getTotalPrice();
         var ifPurchaseValid = accountBalance >= totalPriceOfProducts;
 
-        console.log("totol price of products for buying : " + totalPriceOfProducts + "\n" + "payment card balace : " + accountBalance + " din.")
+        console.log("totol price of products for buying : " + totalPriceOfProducts + " din." + "\n" + "payment card balace : " + accountBalance + " din.")
 
         if (ifPurchaseValid) {
             var forPay = accountBalance - totalPriceOfProducts;
@@ -86,7 +91,7 @@
             return "You have successfully purchased your items!";
         } else {
             var extraAmountForPaying = totalPriceOfProducts - accountBalance;
-            return "You need " + extraAmount + " more to be able to buy your items!"
+            return "You need " + extraAmountForPaying + " more to be able to buy your items!"
         }
 
     }
@@ -101,18 +106,23 @@
 
     var myBag = new shoppingBag();
 
-    myBag.addProduct(banana)
-    myBag.addProduct(mango)
-    myBag.addProduct(orange)
+    myBag.addProduct(banana);
+    myBag.addProduct(mango);
+    myBag.addProduct(orange);
+
+    myBag.info(banana)
+    myBag.info(mango)
+    myBag.info(orange)
+
     myBag.getTotalPrice();
     myBag.getAveragePrice();
     myBag.getMostExpensive();
 
     var myPaymentCard = new PaymentCard(1700.50, "12/12/2019")
-    var myBayProducts = myBag.shoppingList;
+    var shoppingBagProducts = myBag.infoList;
 
     console.log(checkOutAndPay(myPaymentCard, myBag));
-    console.log(myBayProducts);
+    console.log(shoppingBagProducts);
 
 
 })();
