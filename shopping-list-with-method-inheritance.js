@@ -37,7 +37,6 @@
 
     ShoppingBag.prototype.info = function(product) {
         this.listInfo.push(product.getInfo())
-        return this.listInfo;
     }
 
     ShoppingBag.prototype.calculateTotalPrice = function(product) {
@@ -46,7 +45,6 @@
             throw Error("shopping bag is empty")
         }
 
-        var totalPrice = 0;
         this.shoppingList.forEach(function(product) {
             totalPrice += product.price;
         });
@@ -86,10 +84,10 @@
         var ifPurchaseValid = accountBalance >= totalPriceOfProducts;
 
         if (!status) {
-            throw Error("payment card has expired !")
+            throw Error("Payment card has expired !")
         }
 
-        console.log("totol price of products for buying : " + totalPriceOfProducts + " din." + "\n" + "payment card balace : " + accountBalance + " din.")
+        console.log("Total price of products for buying : " + totalPriceOfProducts + " din." + "\n" + "payment card balace : " + accountBalance + " din.")
 
         if (ifPurchaseValid) {
             var forPay = accountBalance - totalPriceOfProducts;
