@@ -9,8 +9,7 @@
             this.expirationDate = new Date(expirationDate);
         }
         getInfo() {
-            let output = this.name.charAt(0).toUpperCase() + this.name.charAt(this.name.length - 1).toUpperCase() +
-                +this.id + ", " + this.name + ", " + this.price + " din.";
+            let output = `${this.name.charAt(0).toUpperCase()}${this.name.charAt(this.name.length - 1).toUpperCase()}${this.id}, ${this.name}, ${this.price} din.`;
             return output;
         }
     }
@@ -44,19 +43,19 @@
             return totalPrice;
         }
         getAveragePrice() {
-            var averagePrice = 0;
-            var totalPrice = this.calculateTotalPrice();
-            var numberOfProducts = this.shoppingList.length;
+            let averagePrice = 0;
+            const totalPrice = this.calculateTotalPrice();
+            const numberOfProducts = this.shoppingList.length;
             averagePrice = totalPrice / numberOfProducts;
 
             return parseFloat(averagePrice.toFixed(3));
         }
         getMostExpensive() {
-            let sortProducts = this.shoppingList.slice().sort(function(currentProduct, nextProduct) {
+            let sortProducts = this.shoppingList.slice().sort((currentProduct, nextProduct) => {
                 return currentProduct.price - nextProduct.price;
             })
 
-            var mostExpensiveProduct = sortProducts[sortProducts.length - 1]
+            const mostExpensiveProduct = sortProducts[sortProducts.length - 1]
             return mostExpensiveProduct
         }
     }
